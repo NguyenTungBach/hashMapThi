@@ -1,8 +1,12 @@
+package view;
+
+import controller.ContactController;
+
 import java.util.Scanner;
 
-public class AddressBook {
+public class AddressBook{
     Scanner scanner = new Scanner(System.in);
-    Contact contact = new Contact();
+    ContactController contact = new ContactController();
     public void genarateMenu(){
         while (true) {
             System.out.println("1. Add new contact");
