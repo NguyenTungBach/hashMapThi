@@ -1,10 +1,9 @@
 import java.util.Scanner;
 
 public class AddressBook {
-
-    public static void main(String[] args) {
-        Scanner scanner = new Scanner(System.in);
-        Contact contact = new Contact();
+    Scanner scanner = new Scanner(System.in);
+    Contact contact = new Contact();
+    public void genarateMenu(){
         while (true) {
             System.out.println("1. Add new contact");
             System.out.println("2. Find a contact by name");
@@ -17,10 +16,10 @@ public class AddressBook {
                     contact.addTelephoneNumber();
                     break;
                 case 2:
-                    contact.Display();
+                    contact.findTelephoneNumber();
                     break;
                 case 3:
-                    contact.findTelephoneNumber();
+                    contact.Display();
                     break;
             }
             if (choice == 4){

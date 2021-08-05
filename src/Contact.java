@@ -3,8 +3,8 @@ import java.util.*;
 public class Contact implements AddressBookImplementing {
     String name;
     String phone;
-    List<Contact> contactList = new ArrayList<>();
-    Map<Integer, Contact> contactMap = new HashMap<>();
+//    List<Contact> contactList = new ArrayList<>();
+    Map<String, Contact> contactMap = new HashMap<>();
     public Contact() {
     }
 
@@ -44,20 +44,16 @@ public class Contact implements AddressBookImplementing {
         System.out.println("Phone: ");
         String phone = scanner.nextLine();
         Contact contact = new Contact(name,phone);
-        contactList.add(contact);
+        contactMap.put(name,contact);
     }
 
     @Override
     public void Display() {
-        for (int i = 0; i < contactList.size(); i++) {
-//            System.out.println(contactList.get(i).toString());
-            contactMap.put(i,contactList.get(i));
-        }
         System.out.println("Address Book");
         System.out.printf("%5s%8s%5s | %1s%21s%14s \n",
                 "","Contact Name", "",
                 "","Phone number", "");
-        for (Map.Entry<Integer, Contact> entry:
+        for (Map.Entry<String, Contact> entry:
                 contactMap.entrySet()){
             System.out.println(entry.getValue().toString());
         }
@@ -68,20 +64,16 @@ public class Contact implements AddressBookImplementing {
         Scanner scanner = new Scanner(System.in);
         System.out.println("Enter name");
         String name = scanner.nextLine();
-        int check = 0;
-        for (int i = 0; i < contactList.size(); i++) {
-            if (name.equalsIgnoreCase(contactList.get(i).getName())){
-//                System.out.println("found");
-                System.out.println("Address Book");
-                System.out.printf("%5s%8s%5s | %1s%21s%14s \n",
-                        "","Contact Name", "",
-                        "","Phone number", "");
-                System.out.println(contactList.get(i).toString());
-                check++;
-            }
-        }
-        if (check == 0){
-            System.out.println("“Not found");
+        if (contactMap.containsKey(name)){
+            System.out.println("Address Book");
+            System.out.printf("%5s%8s%5s | %1s%21s%14s \n",
+                    "","Contact Name", "",
+                    "","Phone number", "");
+            System.out.printf("%5s%8s%5s | %1s%21s%14s \n",
+                    "",contactMap.get(name).getName(), "",
+                    "",contactMap.get(name).getPhone(), "");
+        } else {
+            System.out.println("Not Found");
         }
     }
 }
